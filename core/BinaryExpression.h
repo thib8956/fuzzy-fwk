@@ -2,6 +2,7 @@
 #define BINARYEXPRESSION_H_
 
 #include "Expression.h"
+#include <stdio.h>
 
 namespace core {
 	template <typename T>
