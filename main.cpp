@@ -1,5 +1,6 @@
 #include <iostream>
 
+#include "core/BinaryExpressionModel.h"
 #include "core/ValueModel.h"
 #include "fuzzy/AndMin.h"
 
@@ -15,4 +16,7 @@ int main(int argc, char* const argv[]) {
 
 	fuzzy::AndMin<int> opeAnd;
 	std::cout << opeAnd.evaluate(&left, &right) << std::endl;
+
+	core::BinaryExpressionModel<int> model(&opeAnd, &left, &right);
+	std::cout << model.evaluate() << std::endl;
 }
