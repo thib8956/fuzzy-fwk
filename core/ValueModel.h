@@ -9,7 +9,7 @@ namespace core {
 	class ValueModel : public Expression<T> {
 	public:
 		virtual ~ValueModel() = default;
-		ValueModel() = default;
+		ValueModel(T value);
 
 		virtual T evaluate() const;
 		virtual void setValue(T *v);
@@ -17,6 +17,9 @@ namespace core {
 	private:
 		T value;
 	};
+
+	template <typename T>
+	ValueModel<T>::ValueModel(T value) : value(value) {}
 
 	template <typename T>
 	T ValueModel<T>::evaluate() const {
