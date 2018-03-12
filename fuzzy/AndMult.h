@@ -13,7 +13,7 @@ public:
 	virtual T evaluate(core::Expression<T> *left, core::Expression<T> *right) const;
 };
 
-template<class T>
+template<typename T>
 T AndMult<T>::evaluate(core::Expression<T> *left, core::Expression<T> *right) const {
 	return left->evaluate() * right->evaluate();
 }

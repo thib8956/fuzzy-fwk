@@ -3,6 +3,7 @@
 #include "core/BinaryExpressionModel.h"
 #include "core/ValueModel.h"
 #include "fuzzy/AndMin.h"
+#include "fuzzy/OrMax.h"
 
 int main(int argc, char* const argv[]) {
 	core::ValueModel<int> value(1);
@@ -19,4 +20,7 @@ int main(int argc, char* const argv[]) {
 
 	core::BinaryExpressionModel<int> model(&opeAnd, &left, &right);
 	std::cout << model.evaluate() << std::endl;
+
+	fuzzy::OrMax<int> opeOr;
+	std::cout << opeOr.evaluate(&left, &right) << std::endl;
 }
