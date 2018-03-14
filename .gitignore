@@ -32,3 +32,6 @@ Debug/
 *.exe
 *.out
 *.app
+.cproject
+.settings/language.settings.xml
+.DS_Store
