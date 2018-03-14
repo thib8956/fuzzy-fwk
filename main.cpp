@@ -4,6 +4,7 @@
 #include "core/ValueModel.h"
 #include "fuzzy/AndMin.h"
 #include "fuzzy/OrMax.h"
+#include "fuzzy/NotMinus1.h"
 
 int main(int argc, char* const argv[]) {
 	core::ValueModel<int> value(1);
@@ -23,4 +24,8 @@ int main(int argc, char* const argv[]) {
 
 	fuzzy::OrMax<int> opeOr;
 	std::cout << opeOr.evaluate(&left, &right) << std::endl;
+
+    fuzzy::NotMinus1<int> opeNot;
+    core::UnaryExpressionModel<int> model(&value, &opeNot);
+	std::cout << "NotMinus1 : " << model.evaluate() << std::endl;
 }
