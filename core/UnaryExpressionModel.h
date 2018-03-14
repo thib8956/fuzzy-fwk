@@ -31,6 +31,7 @@ namespace core {
 		if (operand != nullptr) {
 			return this->evaluate(operand);
 		}
+		return T();
 	}
 
 	template <typename T>
@@ -38,6 +39,7 @@ namespace core {
 		if (ope != nullptr) {
 			return ope->evaluate(expression);
 		}
+		return T();
 	}
 
 }  // namespace core

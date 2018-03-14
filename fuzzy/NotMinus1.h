@@ -2,7 +2,7 @@
 #define NOTMINUS1_H_
 
 #include "../core/Expression.h"
-#include "../core/UnaryExpression.h"
+#include "../core/Not.h"
 
 namespace fuzzy {
 
