@@ -1,15 +1,16 @@
-#ifndef UNARYEXPRESSION_H_
-#define UNARYEXPRESSION_H_
+#ifndef IS_H_
+#define IS_H_
 
 #include "Expression.h"
+#include "UnaryExpression.h"
 
 namespace core {
 	template <typename T>
-	class UnaryExpression {
+	class Is : public UnaryExpression<T> {
 	public:
-		virtual ~UnaryExpression() = default;
+		virtual ~Is() = default;
 		virtual T evaluate(Expression<T> *expression) const = 0;
 	};
 }  // namespace core
 
-#endif /* UNARYEXPRESSION_H_ */
+#endif /* IS_H_ */
