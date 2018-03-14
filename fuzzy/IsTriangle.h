@@ -1,6 +1,9 @@
 #ifndef ISTRIANGLE_H_
 #define ISTRIANGLE_H_
 
+#include <iostream>
+
+#include "../core/Expression.h"
 #include "../core/Is.h"
 
 namespace fuzzy {
@@ -25,8 +28,13 @@ IsTriangle<T>::IsTriangle(T* min, T* mid, T* max) : min(min), mid(mid), max(max)
 template <typename T>
 T IsTriangle<T>::evaluate(core::Expression<T> *expression) const {
 	T eval = expression->evaluate();
-	// TODO : implement evaluate
-	return eval;
+
+	if (eval < *min || eval > *max) {
+		std::cout << "if " << std::endl;
+		return 0;
+	}
+
+	return (eval < *mid) ? (eval-*min)/(*mid-*min) : (*max-eval)/(*max-*mid);
 }
 
 }
