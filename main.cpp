@@ -5,6 +5,11 @@
 #include "fuzzy/AndMin.h"
 #include "fuzzy/OrMax.h"
 #include "fuzzy/NotMinus1.h"
+#include "fuzzy/ThenMin.h"
+#include "fuzzy/AggMax.h"
+#include "fuzzy/ThenMult.h"
+#include "fuzzy/AggPlus.h"
+
 
 int main(int argc, char* const argv[]) {
 	core::ValueModel<int> value(1);
@@ -15,8 +20,10 @@ int main(int argc, char* const argv[]) {
 	//fuzzy::AndMin<int> andOpe;
 	core::ValueModel<int> left(5);
 	core::ValueModel<int> right(4);
+    fuzzy::AggPlus<int> opeAnd;
+    std::cout << opeAnd.evaluate(&left, &right) << std::endl;
 
-	fuzzy::AndMin<int> opeAnd;
+	/*fuzzy::AndMin<int> opeAnd;
 	std::cout << opeAnd.evaluate(&left, &right) << std::endl;
 
 	core::BinaryExpressionModel<int> model(&opeAnd, &left, &right);
@@ -27,5 +34,5 @@ int main(int argc, char* const argv[]) {
 
     fuzzy::NotMinus1<int> opeNot;
     core::UnaryExpressionModel<int> model(&value, &opeNot);
-	std::cout << "NotMinus1 : " << model.evaluate() << std::endl;
+	std::cout << "NotMinus1 : " << model.evaluate() << std::endl;*/
 }
