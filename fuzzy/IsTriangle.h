@@ -11,30 +11,30 @@ namespace fuzzy {
 template <typename T>
 class IsTriangle : public core::Is<T> {
 public:
-	IsTriangle(T *min=0, T *mid=0, T *max=0);
+	IsTriangle(T min=0, T mid=0, T max=0);
 	virtual ~IsTriangle() = default;
 	virtual T evaluate(core::Expression<T> *expression) const;
 
 private:
-	T *min;
-	T *mid;
-	T *max;
+	T min;
+	T mid;
+	T max;
 };
 
 template<typename T>
-IsTriangle<T>::IsTriangle(T* min, T* mid, T* max) : min(min), mid(mid), max(max) {
+IsTriangle<T>::IsTriangle(T min, T mid, T max) : min(min), mid(mid), max(max) {
 }
 
 template <typename T>
 T IsTriangle<T>::evaluate(core::Expression<T> *expression) const {
 	T eval = expression->evaluate();
 
-	if (eval < *min || eval > *max) {
+	if (eval < min || eval > max) {
 		std::cout << "if " << std::endl;
 		return 0;
 	}
 
-	return (eval < *mid) ? (eval-*min)/(*mid-*min) : (*max-eval)/(*max-*mid);
+	return (eval < mid) ? (eval-min)/(mid-min) : (max-eval)/(max-mid);
 }
 
 }
