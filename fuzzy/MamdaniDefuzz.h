@@ -2,6 +2,9 @@
 #define MAMDANIDEFUZZ_H_
 
 #include "../core/BinaryExpression.h"
+#include "../core/Evaluator.h"
+#include "../core/Expression.h"
+
 using namespace core;
 
 namespace fuzzy{
@@ -12,7 +15,7 @@ public:
 	T evaluate(Expression<T>* l,Expression<T>* r) const=0;
 	virtual ~MamdaniDefuzz() = default;
 	virtual T defuzz(const typename Evaluator<T>::Shape&) const=0;
-	Shape buildShape(const T& min, const T& max, const T& step, Expression<T> *in, Expression<T> *out) const=0;
+	virtual typename Evaluator<T>::Shape buildShape(Expression<T> *in, Expression<T> *out) const=0;
 };
 
 
