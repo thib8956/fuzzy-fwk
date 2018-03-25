@@ -29,6 +29,7 @@ template <typename T>
 T IsTriangle<T>::evaluate(core::Expression<T> *expression) const {
 	T eval = expression->evaluate();
 
+	// TODO : exceptions
 	if (eval < min || eval > max) {
 		std::cout << "if " << std::endl;
 		return 0;
