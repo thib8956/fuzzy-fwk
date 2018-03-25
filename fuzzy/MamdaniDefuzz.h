@@ -18,10 +18,5 @@ public:
 	virtual typename Evaluator<T>::Shape buildShape(Expression<T> *in, Expression<T> *out) const=0;
 };
 
-
-
-
-
-
 }
 #endif //MAMDANIDEFUZZ_H_

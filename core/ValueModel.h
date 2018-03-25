@@ -13,6 +13,7 @@ namespace core {
 
 		virtual T evaluate() const;
 		virtual void setValue(T *v);
+		virtual T getValue() const;
 
 	private:
 		T value;
@@ -29,6 +30,11 @@ namespace core {
 	template <typename T>
 	void ValueModel<T>::setValue(T *v) {
 		value = *v;
+	}
+
+	template <typename T>
+	T ValueModel<T>::getValue() const {
+		return value;
 	}
 
 }  // namespace core
