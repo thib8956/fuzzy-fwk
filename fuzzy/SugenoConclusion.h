@@ -10,13 +10,13 @@ template <typename T>
 class SugenoConclusion : public core::NaryExpression<T> {
 public:
 		virtual ~SugenoConclusion() = default;
-		virtual T evaluate(core::Expression<T> operands[]);
+		virtual T evaluate(core::Expression<T> *operands[]) const;
 private:
 		T coeff[];
 };
 
 template <typename T>
-T SugenoConclusion<T>::evaluate(core::Expression<T> operands[]) {
+T SugenoConclusion<T>::evaluate(core::Expression<T> *operands[]) const {
 	// TODO
 	return NULL;
 }
