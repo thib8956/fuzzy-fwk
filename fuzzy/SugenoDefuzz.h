@@ -11,11 +11,11 @@ template <typename T>
 class SugenoDefuzz : public core::NaryExpression<T> {
 public:
 		virtual ~SugenoDefuzz() = default;
-		virtual T evaluate(core::Expression<T> operands[]);
+		virtual T evaluate(core::Expression<T> *operands[]) const;
 };
 
 template <typename T>
-T SugenoDefuzz<T>::evaluate(core::Expression<T> operands[]) {
+T SugenoDefuzz<T>::evaluate(core::Expression<T> *operands[]) const {
 	// TODO
 	return NULL;
 }
