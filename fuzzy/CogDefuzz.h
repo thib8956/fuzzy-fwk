@@ -12,7 +12,7 @@ template <typename T>
 class CogDefuzz : public MamdaniDefuzz<T>
 {
 public:
-	CogDefuzz(T , T , T );
+	CogDefuzz(T min, T max, T step);
 	T evaluate(Expression<T>* l,Expression<T>* r) const;
 	virtual ~CogDefuzz() = default;
 	T defuzz(const typename Evaluator<T>::Shape &shape) const;
@@ -25,15 +25,15 @@ private:
 };
 
 template <class T>
-CogDefuzz<T>::CogDefuzz(T min, T max, T step): min(min),max(max),step(step){}
+CogDefuzz<T>::CogDefuzz(T min, T max, T step): min(min),max(max),step(step) {}
 
 template <class T>
-T CogDefuzz<T>::evaluate(Expression<T>* l,Expression<T>* r) const{
+T CogDefuzz<T>::evaluate(Expression<T>* l,Expression<T>* r) const {
 	return defuzz(buildShape(l,r));
 }
 
 template <class T>
-T CogDefuzz<T>::defuzz(const typename Evaluator<T>::Shape &shape) const{
+T CogDefuzz<T>::defuzz(const typename Evaluator<T>::Shape &shape) const {
 	// Calcul du centre de gravité **Méthode d'approximation par rectangle**
 	// FIXME: exception si dem=0 et num=0 (pas de division par 0)
 	T dem = 0;
