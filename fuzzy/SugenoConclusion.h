@@ -1,6 +1,8 @@
 #ifndef SUGENOCONCLUSION_H_
 #define SUGENOCONCLUSION_H_
 
+#include <vector>
+
 #include "../core/Expression.h"
 #include "../core/NaryExpression.h"
 
@@ -10,13 +12,13 @@ template <typename T>
 class SugenoConclusion : public core::NaryExpression<T> {
 public:
 		virtual ~SugenoConclusion() = default;
-		virtual T evaluate(core::Expression<T> *operands[]) const;
+		virtual T evaluate(std::vector<const core::Expression<T>*> *operands) const;
 private:
-		T coeff[];
+		const std::vector *coeff;
 };
 
 template <typename T>
-T SugenoConclusion<T>::evaluate(core::Expression<T> *operands[]) const {
+SugenoConclusion<T>::SugenoConclusion(T *coeff) : coeff(coeff) {}
 	// TODO
 	return NULL;
 }
