@@ -1,6 +1,8 @@
 #ifndef NARYSHADOWEXPRESSION_H_
 #define NARYSHADOWEXPRESSION_H_
 
+#include "../exceptions/EvaluationException.h"
+#include "Expression.h"
 #include "NaryExpression.h"
 
 namespace core {
@@ -28,8 +30,7 @@ target(target) {
 template<typename T>
 T NaryShadowExpression<T>::evaluate(Expression<T>* operands[]) const {
 	if (target == nullptr) {
-		// TODO : handle exception
-		return 0;
+		throw exceptions::EvaluationException("Target is null");
 	}
 	return target->evaluate(operands);
 }

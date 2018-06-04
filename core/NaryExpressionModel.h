@@ -1,6 +1,7 @@
 #ifndef NARYEXPRESSIONMODEL_H_
 #define NARYEXPRESSIONMODEL_H_
 
+#include "../exceptions/OperandException.h"
 #include "Expression.h"
 #include "NaryExpression.h"
 
@@ -29,8 +30,7 @@ NaryExpressionModel<T>::NaryExpressionModel(NaryExpression<T>* ope,
 template<typename T>
 T NaryExpressionModel<T>::evaluate() const {
 	if (operands == NULL) {
-		// TODO handle exception
-		return 0;
+		throw exceptions::OperandException("Operand is null.");
 	}
 	return ope->evaluate(operands);
 }
@@ -38,8 +38,7 @@ T NaryExpressionModel<T>::evaluate() const {
 template<typename T>
 T NaryExpressionModel<T>::evaluate(Expression<T> *operands[]) const {
 	if (operands == NULL) {
-		// TODO handle exception
-		return 0;
+		throw exceptions::OperandException("Operand is null.");
 	}
 	return evaluate(operands);
 }

@@ -7,6 +7,7 @@
 #include "../core/BinaryShadowExpression.h"
 #include "../core/Expression.h"
 #include "../core/NaryExpression.h"
+#include "../exceptions/EvaluationException.h"
 
 namespace fuzzy {
 
@@ -31,7 +32,8 @@ T SugenoDefuzz<T>::evaluate(std::vector<const core::Expression<T>*> *operands) c
 		num += premise * (*it)->evaluate();
 		denum += premise;
 	}
-	// TODO: check denum != O
+
+	if (denum == 0) throw exceptions::EvaluationException("denum is null");
 	return num / denum;
 }
 }

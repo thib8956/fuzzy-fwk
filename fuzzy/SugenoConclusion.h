@@ -31,7 +31,6 @@ T SugenoConclusion<T>::evaluate(std::vector<const core::Expression<T>*> *operand
 		result += *itcoeff * eval;
 	}
 
-	// TODO exceptions
 	return result;
 }
 

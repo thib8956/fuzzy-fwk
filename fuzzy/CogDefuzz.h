@@ -4,6 +4,7 @@
 #include "../core/Evaluator.h"
 #include "../core/Expression.h"
 #include "../core/ValueModel.h"
+#include "../exceptions/EvaluationException.h"
 #include "MamdaniDefuzz.h"
 
 namespace fuzzy{
@@ -35,14 +36,15 @@ T CogDefuzz<T>::evaluate(Expression<T>* l,Expression<T>* r) const {
 template <class T>
 T CogDefuzz<T>::defuzz(const typename Evaluator<T>::Shape &shape) const {
 	// Calcul du centre de gravité **Méthode d'approximation par rectangle**
-	// FIXME: exception si dem=0 et num=0 (pas de division par 0)
-	T dem = 0;
+	T den = 0;
 	T num = 0;
 	for(unsigned int i = 0; i<shape.first.size();i++){
 		num = num + shape.first.at(i) * shape.second.at(i); //Somme de x*y
-		dem = dem + shape.second.at(i); // somme de y
+		den = den + shape.second.at(i); // somme de y
 	}
-	return num/dem;
+
+	if (den == 0) throw  exceptions::DefuzzException("Denominator is null");
+	return num/den;
 }
 
 template <class T>

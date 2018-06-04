@@ -3,6 +3,7 @@
 
 #include "../core/Expression.h"
 #include "../core/Is.h"
+#include "../exceptions/OperandException.h"
 
 namespace fuzzy {
 
@@ -27,9 +28,8 @@ template <typename T>
 T IsTriangle<T>::evaluate(core::Expression<T> *expression) const {
 	T eval = expression->evaluate();
 
-	// TODO : exceptions
 	if (eval < min || eval > max) {
-		return 0;
+		throw exceptions::OperandException("Undefined eval value for this range.");
 	}
 
 	return (eval < mid) ? (eval-min)/(mid-min) : (max-eval)/(max-mid);
