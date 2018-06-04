@@ -13,7 +13,7 @@ public:
 	virtual ~NaryShadowExpression() = default;
 
 	virtual T evaluate(Expression<T> *operands[]) const;
-	const NaryExpression<T>*& getTarget() const;
+	const NaryExpression<T>* getTarget() const;
 	void setTarget(const NaryExpression<T> *target);
 
 private:
@@ -35,7 +35,7 @@ T NaryShadowExpression<T>::evaluate(Expression<T>* operands[]) const {
 }
 
 template <typename T>
-const NaryExpression<T>*& core::NaryShadowExpression<T>::getTarget() const {
+const NaryExpression<T>* core::NaryShadowExpression<T>::getTarget() const {
 	return target;
 }
 
