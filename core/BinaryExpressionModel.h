@@ -15,6 +15,7 @@ public:
 
 	virtual T evaluate() const;
 	virtual T evaluate(Expression<T> *left, Expression<T> *right) const;
+	const BinaryExpression<T>* getOperator() const;
 
 private:
 	BinaryExpression<T> *ope; // operator
@@ -42,6 +43,11 @@ T BinaryExpressionModel<T>::evaluate(Expression<T> *left, Expression<T> *right) 
 	}
 
 	return T();
+}
+
+template <typename T>
+const BinaryExpression<T>* core::BinaryExpressionModel<T>::getOperator() const {
+	return ope;
 }
 
 }
