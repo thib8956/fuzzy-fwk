@@ -6,20 +6,12 @@
 
 namespace exceptions {
 
-class EvaluationException : public std::runtime_error {
-public :
-	EvaluationException(const std::string& msg);
-	const char* what() override;
-private:
-	const std::string msg;
-}
-
-EvaluationException::EvaluationException(const std::string& msg) : msg(msg) {}
-
-const char* EvaluationException::what() {
-	return msg.c_str();
-}
-
+struct EvaluationException : public std::runtime_error {
+	EvaluationException(const std::string & msg) : std::runtime_error(msg) {}
+	const char* what() const _GLIBCXX_USE_NOEXCEPT {
+		return this->what();
+	}
+};
 
 }
 

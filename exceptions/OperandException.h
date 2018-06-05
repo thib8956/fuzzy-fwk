@@ -6,20 +6,12 @@
 
 namespace exceptions {
 
-class OperandException : public std::runtime_error {
-public:
-	OperandException(const std::string& msg);
-	const char* what() override;
-private:
-	const std::string message;
-
+struct OperandException : public std::runtime_error {
+	OperandException(const std::string& msg) : std::runtime_error(msg) {}
+	const char* what() const _GLIBCXX_USE_NOEXCEPT override {
+		return this->what();
+	}
 };
-
-OperandException::OperandException(const std::string& msg) : message(msg) {}
-
-const char* OperandException::what() {
-	return message.c_str();
-}
 
 }  // namespace exceptions
 
