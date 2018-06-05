@@ -15,11 +15,11 @@ public:
 		virtual ~SugenoConclusion() = default;
 		virtual T evaluate(std::vector<const core::Expression<T>*> *operands) const;
 private:
-		const std::vector *coeff;
+		const std::vector<T> coeff;
 };
 
 template <typename T>
-SugenoConclusion<T>::SugenoConclusion(T *coeff) : coeff(coeff) {}
+SugenoConclusion<T>::SugenoConclusion(std::vector<T>& coeff) : coeff(coeff) {}
 
 template <typename T>
 T SugenoConclusion<T>::evaluate(std::vector<const core::Expression<T>*> *operands) const {

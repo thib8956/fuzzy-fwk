@@ -10,7 +10,7 @@ namespace core {
 	class NaryExpression {
 	public:
 		virtual ~NaryExpression() = default;
-		virtual T evaluate(std::vector<const Expression<T>*> *operands) const = 0;
+		virtual T evaluate(std::vector<Expression<T>*> *operands) const = 0;
 	};
 }
 
