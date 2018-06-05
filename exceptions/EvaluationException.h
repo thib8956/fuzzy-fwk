@@ -9,7 +9,7 @@ namespace exceptions {
 struct EvaluationException : public std::runtime_error {
 	EvaluationException(const std::string & msg) : std::runtime_error(msg) {}
 	const char* what() const _GLIBCXX_USE_NOEXCEPT {
-		return this->what();
+		return std::runtime_error::what();
 	}
 };
 

@@ -9,7 +9,7 @@ namespace exceptions {
 struct OperatorException : public std::runtime_error {
 	OperatorException(const std::string& msg) : std::runtime_error(msg) {}
 	const char* what() const _GLIBCXX_USE_NOEXCEPT override {
-		return this->what();
+		return std::runtime_error::what();
 	}
 };
 
