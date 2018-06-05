@@ -32,7 +32,7 @@ T BinaryExpressionModel<T>::evaluate() const {
 	if (ope != nullptr) {
 		return ope->evaluate(left, right);
 	}
-
+	// TODO: exception
 	return T();
 }
 
@@ -41,7 +41,7 @@ T BinaryExpressionModel<T>::evaluate(Expression<T> *left, Expression<T> *right) 
 	if (left != nullptr && right != nullptr) {
 		return evaluate(left, right);
 	}
-
+	// TODO: exception
 	return T();
 }
 

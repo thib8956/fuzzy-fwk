@@ -39,6 +39,7 @@ namespace core {
 		if (ope != nullptr) {
 			return ope->evaluate(expression);
 		}
+		// TODO : exception
 		return T();
 	}
 

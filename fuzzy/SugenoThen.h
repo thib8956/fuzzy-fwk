@@ -16,8 +16,7 @@ public:
 	virtual T getPremiseValue() const;
 
 private:
-	// TODO : mutable ?
-	T premiseValue;
+	mutable T premiseValue;
 };
 
 template <typename T>

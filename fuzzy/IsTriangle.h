@@ -29,7 +29,7 @@ T IsTriangle<T>::evaluate(core::Expression<T> *expression) const {
 	T eval = expression->evaluate();
 
 	if (eval < min || eval > max) {
-		throw exceptions::OperandException("Undefined eval value for this range.");
+		return 0;
 	}
 
 	return (eval < mid) ? (eval-min)/(mid-min) : (max-eval)/(max-mid);
