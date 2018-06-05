@@ -21,8 +21,8 @@ public:
 	virtual T evaluate(std::vector<Expression<T>*> *operands) const;
 
 private:
-	std::vector<Expression<T>*> *operands;
 	NaryExpression<T> *ope; // n-ary operator
+	std::vector<Expression<T>*> *operands;
 };
 
 template<typename T>

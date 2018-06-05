@@ -11,9 +11,9 @@ namespace fuzzy {
 template <typename T>
 class SugenoConclusion : public core::NaryExpression<T> {
 public:
-		SugenoConclusion(T *coeff);
+		SugenoConclusion(std::vector<T>& coeff);
 		virtual ~SugenoConclusion() = default;
-		virtual T evaluate(std::vector<const core::Expression<T>*> *operands) const;
+		virtual T evaluate(std::vector<Expression<T>*> *operands) const;
 private:
 		const std::vector<T> coeff;
 };
@@ -22,11 +22,11 @@ template <typename T>
 SugenoConclusion<T>::SugenoConclusion(std::vector<T>& coeff) : coeff(coeff) {}
 
 template <typename T>
-T SugenoConclusion<T>::evaluate(std::vector<const core::Expression<T>*> *operands) const {
+T SugenoConclusion<T>::evaluate(std::vector<Expression<T>*> *operands) const {
 	T result = 0;
-	auto itcoeff = coeff->begin();
+	auto itcoeff = coeff.begin();
 	auto itexpr = operands->begin();
-	for (; itexpr != operands->end() && itcoeff != coeff->end(); itexpr++, itcoeff++) {
+	for (; itexpr != operands->end() && itcoeff != coeff.end(); itexpr++, itcoeff++) {
 		T eval = (*itexpr)->evaluate();
 		result += *itcoeff * eval;
 	}

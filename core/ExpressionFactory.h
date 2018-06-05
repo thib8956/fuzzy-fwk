@@ -25,7 +25,7 @@ public:
 protected:
 	virtual Expression<T>* newUnary(UnaryExpression<T> *ope, Expression<T> *expression);
 	virtual Expression<T>* newBinary(BinaryExpression<T> *ope, Expression<T> *left, Expression<T> *right);
-	virtual Expression<T>* newNAry(NaryExpression<T> *ope, std::vector<Expression<T>*> operands);
+	virtual Expression<T>* newNAry(NaryExpression<T> *ope, std::vector<Expression<T>*> *operands);
 
 private:
 	std::set<Expression<T>*> memory;
@@ -60,7 +60,7 @@ Expression<T>* ExpressionFactory<T>::newBinary(BinaryExpression<T> *ope, Express
 }
 
 template <typename T>
-Expression<T>* ExpressionFactory<T>::newNAry(NaryExpression<T> *ope, std::vector<Expression<T>*> operands) {
+Expression<T>* ExpressionFactory<T>::newNAry(NaryExpression<T> *ope, std::vector<Expression<T>*> *operands) {
 	return hold(new NaryExpressionModel<T>(ope, operands));
 }
 

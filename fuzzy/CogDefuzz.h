@@ -43,7 +43,7 @@ T CogDefuzz<T>::defuzz(const typename Evaluator<T>::Shape &shape) const {
 		den = den + shape.second.at(i); // somme de y
 	}
 
-	if (den == 0) throw  exceptions::DefuzzException("Denominator is null");
+	if (den == 0) throw  exceptions::EvaluationException("Denominator is null");
 	return num/den;
 }
 
