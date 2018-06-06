@@ -26,11 +26,13 @@ T SugenoConclusion<T>::evaluate(std::vector<Expression<T>*> *operands) const {
 	T result = 0;
 	auto itcoeff = coeff.begin();
 	auto itexpr = operands->begin();
-	for (; itexpr != operands->end() && itcoeff != coeff.end(); itexpr++, itcoeff++) {
-		T eval = (*itexpr)->evaluate();
-		result += *itcoeff * eval;
+	if (operands->size() == coeff.size() - 1) {
+		for (; itexpr != operands->end() && itcoeff != coeff.end(); itexpr++, itcoeff++) {
+			T eval = (*itexpr)->evaluate();
+			result += *itcoeff * eval;
+		}
+		result += *itcoeff;
 	}
-
 	return result;
 }
 
