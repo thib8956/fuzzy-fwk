@@ -212,9 +212,97 @@ void gradesMamdani() {
 		}
 	}
 
+}
+
+void gradesSugeno() {
+	// operators
+	NotMinus1<float> opeNot;
+	AndMin<float> opeAnd;
+	OrMax<float> opeOr;
+	SugenoThen<float> opeThen;
+	AggMax<float> opeAgg;
+	CogDefuzz<float> opDefuzz(0, 20, 1);
+	CogDefuzz<float> opeMamdani(5, 25, 1);
+	SugenoDefuzz<float> opeSugeno;
+
+	std::vector<float> coefs;
+	coefs.push_back(1);
+	coefs.push_back(1);
+	coefs.push_back(1);
+	SugenoConclusion<float> opeConclusion(coefs);
+
+	FuzzyFactory<float> factory(&opeNot, &opeAnd, &opeOr, &opeThen, &opeAgg, &opeMamdani, &opeSugeno, &opeConclusion);
+
+	// Input variables : care and work
+	ValueModel<float> care(0);
+	ValueModel<float> work(0);
+
+	// Output : grade
+	ValueModel<float> grade(0);
+
+	// Membership functions
+	IsTriangle<float> poor(-5, 0, 5);
+	IsTriangle<float> good(0, 5, 10);
+	IsTriangle<float> excellent(10, 20, 30);
+	IsTriangle<float> bad(0, 5, 10);
+	IsTriangle<float> careful(10, 15, 20);
+
+	std::vector<Expression<float> *> concl;
+	concl.push_back(&work);
+	concl.push_back(&care);
+	std::vector<Expression<float> *> conclWork;
+	conclWork.push_back(&work);
+
+	// Rules
+	std::vector<Expression<float> *> rules;
+	// IF work IS poor OR care IS bad
+	rules.push_back(
+			factory.newThen(
+					factory.newOr(
+							factory.newIs(&poor, &work),
+							factory.newIs(&bad, &care)
+					),
+					factory.newConclusion(&concl)
+			)
+	);
+	// IF work IS good
+	rules.push_back(
+			factory.newThen(
+					factory.newIs(&good, &work),
+					factory.newConclusion(&conclWork)
+			)
+	);
+	// IF work IS excellent AND care IS good
+	rules.push_back(
+			factory.newThen(
+					factory.newAnd(
+							factory.newIs(&excellent, &work),
+							factory.newIs(&good, &care)
+					),
+					factory.newConclusion(&concl)
+			)
+	);
+	Expression<float> *system = factory.newSugeno(&rules);
+	std::cout << "Grades exemple with sugeno method." << std::endl;
+	float s;
+	while (true) {
+		std::cout << "Work : ";
+		std::cin >> s;
+		work.setValue(&s);
+		std::cout << "Care : ";
+		std::cin >> s;
+		care.setValue(&s);
+		try {
+			std::cout << "Grade -> " << system->evaluate() << std::endl;
+		} catch (std::runtime_error& e) {
+			std::cout << e.what() << std::endl;
+		}
 	}
+}
+
 int main(void) {
 	//tipsMamdani();
 	//tipsSugeno();
-	gradesMamdani();
+	//gradesMamdani();
+	gradesSugeno();
 }
