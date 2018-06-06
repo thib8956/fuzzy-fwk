@@ -1,6 +1,7 @@
 #ifndef UNARYSHADOWEXPRESSION_H_
 #define UNARYSHADOWEXPRESSION_H_
 
+#include "../exceptions/EvaluationException.h"
 #include "Expression.h"
 #include "UnaryExpression.h"
 
@@ -24,10 +25,10 @@ namespace core {
     
     template <typename T>
     T UnaryShadowExpression<T>::evaluate(Expression<T> *expression) const {
-        if (target != nullptr) {
-            return target->evaluate(expression);
+        if (target == nullptr) {
+            throw exceptions::EvaluationException("Target is null");
         }
-        return T();
+        return target->evaluate(expression);
     }
     
     template <typename T>

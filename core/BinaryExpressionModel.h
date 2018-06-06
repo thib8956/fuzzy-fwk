@@ -1,6 +1,8 @@
 #ifndef BINARYEXPRESSIONMODEL_H_
 #define BINARYEXPRESSIONMODEL_H_
 
+#include "../exceptions/OperandException.h"
+#include "../exceptions/OperatorException.h"
 #include "BinaryExpression.h"
 #include "Expression.h"
 
@@ -29,20 +31,18 @@ ope(ope), left(left), right(right) {}
 
 template <typename T>
 T BinaryExpressionModel<T>::evaluate() const {
-	if (ope != nullptr) {
-		return ope->evaluate(left, right);
+	if (ope == nullptr) {
+		throw exceptions::OperatorException("Operator is null");
 	}
-	// TODO: exception
-	return T();
+	return ope->evaluate(left, right);
 }
 
 template <typename T>
 T BinaryExpressionModel<T>::evaluate(Expression<T> *left, Expression<T> *right) const {
-	if (left != nullptr && right != nullptr) {
-		return evaluate(left, right);
+	if (left == nullptr ||right == nullptr) {
+		throw exceptions::OperandException("Operand is null");
 	}
-	// TODO: exception
-	return T();
+	return evaluate(left, right);
 }
 
 template <typename T>
