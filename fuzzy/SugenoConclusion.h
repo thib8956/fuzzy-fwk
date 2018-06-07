@@ -26,7 +26,7 @@ T SugenoConclusion<T>::evaluate(std::vector<Expression<T>*> *operands) const {
 	T result = 0;
 	auto itcoeff = coeff.begin();
 	auto itexpr = operands->begin();
-	if (operands->size() == coeff.size() - 1) {
+	if (operands->size() < coeff.size()) {
 		for (; itexpr != operands->end() && itcoeff != coeff.end(); itexpr++, itcoeff++) {
 			T eval = (*itexpr)->evaluate();
 			result += *itcoeff * eval;

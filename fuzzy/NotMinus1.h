@@ -9,7 +9,6 @@ namespace fuzzy {
 	template <typename T>
 	class NotMinus1 : public core::Not<T> {
 	public :
-
 		virtual ~NotMinus1() = default;
 		virtual T evaluate(core::Expression<T> *expression) const;
 	};

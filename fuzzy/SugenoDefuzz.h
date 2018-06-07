@@ -1,6 +1,7 @@
 #ifndef SUGENODEFUZZ_H_
 #define SUGENODEFUZZ_H_
 
+#include <iostream>
 #include <vector>
 
 #include "../core/BinaryExpressionModel.h"

@@ -11,8 +11,8 @@ namespace core {
 		BinaryShadowExpression(BinaryExpression<T> *target = nullptr);
 		virtual ~BinaryShadowExpression() = default;
 		virtual T evaluate(Expression<T> *left, Expression<T> *right) const;
-	const BinaryExpression<T>* getTarget() const;
-	void setTarget(BinaryExpression<T>* target);
+		const BinaryExpression<T>* getTarget() const;
+		void setTarget(BinaryExpression<T>* target);
 
     private:
         BinaryExpression<T> *target; // target
@@ -27,7 +27,7 @@ namespace core {
         if (target == nullptr) {
         	throw exceptions::EvaluationException("Target is null");
         }
-        return target->evaluate(left,right);
+        return target->evaluate(left, right);
     }
 
     template <typename T>

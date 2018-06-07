@@ -1,6 +1,8 @@
 #ifndef CORE_SUGENOTHEN_H_
 #define CORE_SUGENOTHEN_H_
 
+#include <iostream>
+
 #include "../core/Expression.h"
 #include "../core/Then.h"
 

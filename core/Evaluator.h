@@ -21,7 +21,7 @@ template <class T>
 typename Evaluator<T>::Shape Evaluator<T>:: buildShape(const T& min, const T& max, const T& step, ValueModel<T> *in, Expression<T> *out) {
 	std::vector<T> x, y;
 	for (T i= min; i <= max; i += step) {
-		in->setValue(&i); //step pour pouvoir evaluer la Value
+		in->setValue(i); //step pour pouvoir evaluer la Value
 		y.push_back(out->evaluate()); //Construction de la forme par valeur de y en avancant sur x
 		x.push_back(i);
 	}
