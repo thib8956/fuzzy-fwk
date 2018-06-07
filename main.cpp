@@ -6,11 +6,13 @@
 #include "core/ValueModel.h"
 #include "fuzzy/AggMax.h"
 #include "fuzzy/AndMin.h"
+#include "fuzzy/AndMult.h"
 #include "fuzzy/CogDefuzz.h"
 #include "fuzzy/FuzzyFactory.h"
 #include "fuzzy/IsTriangle.h"
 #include "fuzzy/NotMinus1.h"
 #include "fuzzy/OrMax.h"
+#include "fuzzy/OrPlus.h"
 #include "fuzzy/SugenoConclusion.h"
 #include "fuzzy/SugenoDefuzz.h"
 #include "fuzzy/SugenoThen.h"
@@ -68,7 +70,7 @@ void tipsMamdani() {
 	while (true) {
 		std::cout << "Service : ";
 		std::cin >> s;
-		service.setValue(&s);
+		service.setValue(s);
 		try {
 			std::cout << "Tips -> " << system->evaluate() << std::endl;
 		} catch (std::runtime_error& e) {
@@ -134,7 +136,7 @@ void tipsSugeno() {
 	while (true) {
 		std::cout << "Service : ";
 		std::cin >> s;
-		service.setValue(&s);
+		service.setValue(s);
 		try {
 			std::cout << "Tips -> " << system->evaluate() << std::endl;
 		} catch (std::runtime_error& e) {
@@ -163,10 +165,10 @@ void gradesMamdani() {
 
 	// Membership functions
 	IsTriangle<float> poor(-5, 0, 5);
-	IsTriangle<float> good(0, 5, 10);
-	IsTriangle<float> excellent(10, 20, 30);
-	IsTriangle<float> bad(0, 5, 10);
-	IsTriangle<float> careful(10, 15, 20);
+	IsTriangle<float> good(5, 10, 15);
+	IsTriangle<float> excellent(15, 20, 30);
+	IsTriangle<float> bad(-5, 0, 10);
+	IsTriangle<float> careful(5, 20, 21);
 
 	Expression<float> *expr = factory.newAgg(
 			factory.newAgg(
@@ -201,10 +203,10 @@ void gradesMamdani() {
 	while (true) {
 		std::cout << "Work : ";
 		std::cin >> s;
-		work.setValue(&s);
+		work.setValue(s);
 		std::cout << "Care : ";
 		std::cin >> s;
-		care.setValue(&s);
+		care.setValue(s);
 		try {
 			std::cout << "Grade -> " << system->evaluate() << std::endl;
 		} catch (std::runtime_error& e) {
@@ -217,8 +219,8 @@ void gradesMamdani() {
 void gradesSugeno() {
 	// operators
 	NotMinus1<float> opeNot;
-	AndMin<float> opeAnd;
-	OrMax<float> opeOr;
+	AndMult<float> opeAnd;
+	OrPlus<float> opeOr;
 	SugenoThen<float> opeThen;
 	AggMax<float> opeAgg;
 	CogDefuzz<float> opDefuzz(0, 20, 1);
@@ -242,10 +244,10 @@ void gradesSugeno() {
 
 	// Membership functions
 	IsTriangle<float> poor(-5, 0, 5);
-	IsTriangle<float> good(0, 5, 10);
-	IsTriangle<float> excellent(10, 20, 30);
-	IsTriangle<float> bad(0, 5, 10);
-	IsTriangle<float> careful(10, 15, 20);
+	IsTriangle<float> good(5, 10, 15);
+	IsTriangle<float> excellent(15, 20, 30);
+	IsTriangle<float> bad(-5, 0, 10);
+	IsTriangle<float> careful(5, 20, 21);
 
 	std::vector<Expression<float> *> concl;
 	concl.push_back(&work);
@@ -277,7 +279,7 @@ void gradesSugeno() {
 			factory.newThen(
 					factory.newAnd(
 							factory.newIs(&excellent, &work),
-							factory.newIs(&good, &care)
+							factory.newIs(&careful, &care)
 					),
 					factory.newConclusion(&concl)
 			)
@@ -288,10 +290,10 @@ void gradesSugeno() {
 	while (true) {
 		std::cout << "Work : ";
 		std::cin >> s;
-		work.setValue(&s);
+		work.setValue(s);
 		std::cout << "Care : ";
 		std::cin >> s;
-		care.setValue(&s);
+		care.setValue(s);
 		try {
 			std::cout << "Grade -> " << system->evaluate() << std::endl;
 		} catch (std::runtime_error& e) {
